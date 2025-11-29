@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartUp | Tests</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  #mobile-menu { transition: all 0.3s ease-in-out; transform: translateX(100%); opacity: 0; }
+  #mobile-menu.show { transform: translateX(0); opacity: 1; }
+  .test-card { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+  .test-card:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+  .question { margin-bottom: 20px; }
+  .result { margin-top: 20px; font-weight: bold; color: green; }
+</style>
+</head>
+<body class="bg-gray-50">
+
+<!-- Overlay -->
+<div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-30 z-10" onclick="closeMenu()"></div>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-5 bg-white shadow-md">
+  <div class="flex items-center gap-2">
+    <div class="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold text-lg">S</div>
+    <h1 class="text-2xl font-bold text-blue-700">SmartUp</h1>
+  </div>
+  <nav class="hidden md:flex gap-6 text-gray-700 font-medium">
+    <a href="home.html" class="hover:text-blue-600">Home</a>
+    <a href="lessons.html" class="hover:text-blue-600">Lessons</a>
+    <a href="vocabulary.html" class="hover:text-blue-600">Vocabulary</a>
+    <a href="tests.html" class="text-blue-600 font-bold">Tests</a>
+  </nav>
+  <div class="md:hidden">
+    <button onclick="toggleMenu()" class="focus:outline-none">
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<nav id="mobile-menu" class="fixed top-0 right-0 h-full bg-white shadow-md z-20 flex flex-col gap-6 pt-24 p-6 md:hidden overflow-y-auto w-64 max-w-full">
+  <a href="home.html" class="text-gray-700 font-medium mobile-link" onclick="closeMenu()">Home</a>
+  <a href="lessons.html" class="text-gray-700 font-medium mobile-link" onclick="closeMenu()">Lessons</a>
+  <a href="vocabulary.html" class="text-gray-700 font-medium mobile-link" onclick="closeMenu()">Vocabulary</a>
+  <a href="tests.html" class="text-blue-600 font-bold" onclick="closeMenu()">Tests</a>
+</nav>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('show');
+  document.getElementById('overlay').classList.toggle('hidden');
+}
+function closeMenu() {
+  document.getElementById('mobile-menu').classList.remove('show');
+  document.getElementById('overlay').classList.add('hidden');
+}
+</script>
+
+<!-- Banner -->
+<section class="bg-blue-600 text-white pt-32 pb-16 px-6 md:px-20 rounded-b-3xl text-center">
+  <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Test Your English Skills</h1>
+  <p class="text-lg md:text-xl text-blue-200 max-w-2xl mx-auto">Choose a section and start testing your knowledge!</p>
+</section>
+
+<!-- Section Cards -->
+<section id="test-selection" class="mt-16 px-6 md:px-20">
+  <h2 class="text-2xl md:text-3xl font-bold text-blue-700 mb-10 text-center">Select a Test Category</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div onclick="openTest('grammar')" class="test-card bg-white p-8 rounded-3xl shadow text-center hover:bg-blue-50">
+      <h3 class="text-2xl font-semibold text-blue-700 mb-3">Grammar Test</h3>
+      <p class="text-gray-600">Check your grammar skills through fun and interactive questions!</p>
+    </div>
+    <div onclick="openTest('vocabulary')" class="test-card bg-white p-8 rounded-3xl shadow text-center hover:bg-blue-50">
+      <h3 class="text-2xl font-semibold text-blue-700 mb-3">Vocabulary Test</h3>
+      <p class="text-gray-600">Test how many English words you really know!</p>
+    </div>
+  </div>
+</section>
+
+<!-- Tests -->
+<section id="test-container" class="mt-16 px-6 md:px-20 hidden">
+  <form id="quiz-form" class="space-y-6">
+    <h2 id="test-title" class="text-2xl font-bold text-blue-700 mb-6 text-center"></h2>
+    <div id="questions"></div>
+    <button type="button" onclick="checkQuiz()" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">Submit</button>
+    <p id="result" class="result text-center text-lg"></p>
+    <div class="text-center mt-6">
+      <button type="button" onclick="backToSelection()" class="text-blue-600 underline">← Back to Categories</button>
+    </div>
+  </form>
+</section>
+
+<script>
+const tests = {
+  grammar: [
+    { q: 'She ____ to the gym every day.', options: ['go','goes','gone','going'], correct: 'goes' },
+    { q: 'I ____ a book yesterday.', options: ['read','reads','rided','reading'], correct: 'read' },
+    { q: 'They ____ playing football now.', options: ['is','are','was','be'], correct: 'are' },
+    { q: 'If I ____ time, I will call you.', options: ['have','has','had','having'], correct: 'have' },
+  ],
+  vocabulary: [
+    { q: 'Choose the synonym of “happy”.', options: ['sad','joyful','angry','tired'], correct: 'joyful' },
+    { q: 'Select the opposite of “cold”.', options: ['cool','warm','freeze','ice'], correct: 'warm' },
+    { q: 'What does “rapid” mean?', options: ['slow','fast','quiet','lazy'], correct: 'fast' },
+    { q: 'Select the correct meaning of “journey”.', options: ['trip','food','place','game'], correct: 'trip' },
+  ]
+};
+
+function openTest(type) {
+  document.getElementById('test-selection').classList.add('hidden');
+  const testContainer = document.getElementById('test-container');
+  testContainer.classList.remove('hidden');
+  const title = document.getElementById('test-title');
+  title.textContent = type === 'grammar' ? 'Grammar Test' : 'Vocabulary Test';
+  const questionsDiv = document.getElementById('questions');
+  questionsDiv.innerHTML = '';
+  tests[type].forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'question bg-white p-6 rounded-2xl shadow';
+    div.innerHTML = `<h3 class="font-semibold text-blue-700 mb-2">${i+1}. ${item.q}</h3>` +
+      item.options.map(opt => `<label class="block"><input type="radio" name="q${i}" value="${opt}"> ${opt}</label>`).join('') +
+      `<p class="answer text-green-600 hidden mt-2">Correct answer: ${item.correct}</p>`;
+    questionsDiv.appendChild(div);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function checkQuiz() {
+  const title = document.getElementById('test-title').textContent.includes('Grammar') ? 'grammar' : 'vocabulary';
+  const questions = tests[title];
+  let score = 0;
+  questions.forEach((item, i) => {
+    const selected = document.querySelector(`input[name=q${i}]:checked`);
+    const answerEl = document.querySelectorAll('.answer')[i];
+    answerEl.classList.remove('hidden');
+    if (selected && selected.value === item.correct) score++;
+  });
+  document.getElementById('result').textContent = `You scored ${score} out of ${questions.length}`;
+}
+
+function backToSelection() {
+  document.getElementById('test-container').classList.add('hidden');
+  document.getElementById('test-selection').classList.remove('hidden');
+  document.getElementById('result').textContent = '';
+}
+</script>
+
+<footer class="bg-gray-800 text-gray-200 mt-20 py-10 text-center">
+  <p>&copy; 2025 SmartUp. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

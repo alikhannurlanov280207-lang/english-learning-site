@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnglishSite | Motivational Quotes Slider</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Слайдер с плавной анимацией */
+    .slider-track {
+      display: flex;
+      transition: transform 0.8s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+
+    /* Плавное появление мобильного меню */
+    #mobile-menu {
+      transition: all 0.3s ease-in-out;
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    #mobile-menu.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+      menu.classList.toggle('show');
+      overlay.classList.toggle('hidden');
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+      menu.classList.remove('show');
+      overlay.classList.add('hidden');
+    }
+  </script>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-5 bg-white shadow-md">
+  <div class="flex items-center gap-2">
+    <div class="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold text-lg">S</div>
+    <h1 class="text-2xl font-bold text-blue-700">SmartUp</h1>
+  </div>
+
+  <!-- Меню для ПК -->
+  <nav class="hidden md:flex gap-6 text-gray-700 font-medium">
+    <a href="#" class="text-blue-600 font-bold">Home</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="vocabulary.html">Vocabulary</a>
+    <a href="tests.html">Tests</a>
+  </nav>
+
+  <!-- Бургер-иконка для мобильных -->
+  <div class="md:hidden">
+    <button onclick="toggleMenu()" class="focus:outline-none">
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+  <!-- Затемняющий фон -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-30 z-10" onclick="closeMenu()"></div>
+
+  <nav id="mobile-menu" class="fixed top-0 right-0 h-full bg-white shadow-md z-20 flex flex-col gap-6 pt-24 p-6 md:hidden overflow-y-auto w-64 max-w-full">
+    <a href="index.html" class="text-gray-700 font-medium mobile-link" onclick="closeMenu()">Home</a>
+    <a href="lessons.html" class="text-gray-700 font-medium mobile-link" onclick="closeMenu()">Lessons</a>
+    <a href="vocabulary.html" class="text-gray-700 font-medium mobile-link" onclick="closeMenu()">Vocabulary</a>
+    <a href="tests.html" class="text-gray-700 font-medium mobile-link" onclick="closeMenu()">Tests</a>
+  </nav>
+
+
+  <style>
+  .active {
+    color: #1D4ED8; /* Tailwind blue-700 */
+    font-weight: 600;
+  }
+  </style>
+
+  <script>
+  const currentPage = window.location.pathname.split("/").pop(); // имя файла
+  document.querySelectorAll('nav a').forEach(link => {
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('active');
+    }
+  });
+</script>
+
+
+  <section class="bg-blue-600 text-white pt-32 pb-16 px-6 md:px-20 rounded-b-3xl flex flex-col md:flex-row items-center justify-between">
+    <!-- Текстовая часть -->
+    <div class="max-w-xl mb-10 md:mb-0">
+      <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">
+        Learn English <span class="text-blue-200">with EngBlog</span>
+      </h1>
+      <p class="mt-4 text-lg md:text-xl text-blue-100">
+        Over 1,000 articles to improve your English skills, practice grammar, expand vocabulary, and boost confidence.
+      </p>
+    </div>
+
+    <!-- Изображение -->
+    <div class="flex justify-center">
+      <img src="assets/i.png" alt="Learning Illustration" class="w-64 md:w-80 lg:w-96 rounded-2xl shadow-xl">
+    </div>
+  </section>
+
+  <!-- Блок преимуществ -->
+<section class="mt-16 px-6 md:px-20">
+  <h2 class="text-2xl md:text-3xl font-bold text-blue-700 mb-10 text-center">
+    Why Choose SmartUp?
+  </h2>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Карточка 1 -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition-transform">
+      <div class="text-blue-600 text-4xl mb-4">📚</div>
+      <h3 class="font-bold text-lg mb-2">Extensive Library</h3>
+      <p class="text-gray-600 text-sm">Over 1,000 articles and lessons to improve your English skills.</p>
+    </div>
+
+    <!-- Карточка 2 -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition-transform">
+      <div class="text-blue-600 text-4xl mb-4">📝</div>
+      <h3 class="font-bold text-lg mb-2">Interactive Exercises</h3>
+      <p class="text-gray-600 text-sm">Practice grammar and vocabulary with fun quizzes and tests.</p>
+    </div>
+
+    <!-- Карточка 3 -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition-transform">
+       <div class="text-red-600 text-4xl mb-4">▶️</div>
+       <h3 class="font-bold text-lg mb-2">Video Lessons</h3>
+       <p class="text-gray-600 text-sm">Learn through engaging video lessons to improve your English skills.</p>
+    </div>
+
+    <!-- Карточка 4 (ИИ) -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition-transform">
+      <div class="text-blue-600 text-4xl mb-4">🤖</div>
+      <h3 class="font-bold text-lg mb-2">AI Assistance</h3>
+      <p class="text-gray-600 text-sm">Get personalized learning suggestions powered by artificial intelligence.</p>
+    </div>
+
+    <!-- Карточка 5 -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition-transform">
+      <div class="text-blue-600 text-4xl mb-4">🏆</div>
+      <h3 class="font-bold text-lg mb-2">Motivational Tracking</h3>
+      <p class="text-gray-600 text-sm">Track your weekly progress and stay motivated to reach your goals.</p>
+    </div>
+
+    <!-- Карточка 6 -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 transition-transform">
+      <div class="text-blue-600 text-4xl mb-4">🌐</div>
+      <h3 class="font-bold text-lg mb-2">Accessible Anywhere</h3>
+      <p class="text-gray-600 text-sm">Learn English from any device, at home or on the go.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Популярные видео уроки -->
+<section class="mt-16 px-6 md:px-20">
+  <h2 class="text-2xl md:text-3xl font-bold text-blue-700 mb-10 text-center">
+    Popular Video Lessons
+  </h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Видео 1 -->
+    <a href="https://www.youtube.com/watch?v=HJwTaPns-D0&list=PLD6SPjEPomas19iHt6N_iIrx5FEs0E2S3" target="_blank" class="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img class="w-full h-48 object-cover" src="https://img.youtube.com/vi/HJwTaPns-D0/hqdefault.jpg" alt="Video 1">
+      <div class="p-4 text-center font-semibold text-gray-700">Video Lesson 1</div>
+    </a>
+
+    <!-- Видео 2 -->
+    <a href="https://youtu.be/dN5KiZOGFyY?list=PLD6SPjEPomas19iHt6N_iIrx5FEs0E2S3" target="_blank" class="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img class="w-full h-48 object-cover" src="https://img.youtube.com/vi/HJwTaPns-D0/hqdefault.jpg" alt="Video 1">
+      <div class="p-4 text-center font-semibold text-gray-700">Video Lesson 2</div>
+    </a>
+
+    <!-- Видео 3 -->
+    <a href="https://youtu.be/BbmUlE3K6Bg?list=PLD6SPjEPomas19iHt6N_iIrx5FEs0E2S3" target="_blank" class="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img class="w-full h-48 object-cover" src="https://img.youtube.com/vi/HJwTaPns-D0/hqdefault.jpg" alt="Video 1">
+      <div class="p-4 text-center font-semibold text-gray-700">Video Lesson 3</div>
+    </a>
+
+    <!-- Видео 4 -->
+    <a href="https://youtu.be/xboNpbNMFDQ?list=PLD6SPjEPomas19iHt6N_iIrx5FEs0E2S3" target="_blank" class="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img class="w-full h-48 object-cover" src="https://img.youtube.com/vi/HJwTaPns-D0/hqdefault.jpg" alt="Video 1">
+      <div class="p-4 text-center font-semibold text-gray-700">Video Lesson 4</div>
+    </a>
+
+    <!-- Видео 5 -->
+    <a href="https://youtu.be/sKIEVln-rKQ?list=PLD6SPjEPomas19iHt6N_iIrx5FEs0E2S3" target="_blank" class="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img class="w-full h-48 object-cover" src="https://img.youtube.com/vi/HJwTaPns-D0/hqdefault.jpg" alt="Video 1">
+      <div class="p-4 text-center font-semibold text-gray-700">Video Lesson 5</div>
+    </a>
+
+    <!-- Видео 6 -->
+    <a href="https://youtu.be/X8X5RCbpV-U?list=PLD6SPjEPomas19iHt6N_iIrx5FEs0E2S3" target="_blank" class="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img class="w-full h-48 object-cover" src="https://img.youtube.com/vi/HJwTaPns-D0/hqdefault.jpg" alt="Video 1">
+      <div class="p-4 text-center font-semibold text-gray-700">Video Lesson 6</div>
+    </a>
+
+    <!-- Видео 7 -->
+    <a href="https://youtu.be/oLF6u_4huzc?list=PLD6SPjEPomas19iHt6N_iIrx5FEs0E2S3" target="_blank" class="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img class="w-full h-48 object-cover" src="https://img.youtube.com/vi/HJwTaPns-D0/hqdefault.jpg" alt="Video 1">
+      <div class="p-4 text-center font-semibold text-gray-700">Video Lesson 7</div>
+    </a>
+
+    <!-- Видео 8 -->
+    <a href="https://youtu.be/-VaWSZk0Wzw?list=PLD6SPjEPomas19iHt6N_iIrx5FEs0E2S3" target="_blank" class="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img class="w-full h-48 object-cover" src="https://img.youtube.com/vi/HJwTaPns-D0/hqdefault.jpg" alt="Video 1">
+      <div class="p-4 text-center font-semibold text-gray-700">Video Lesson 8</div>
+    </a>
+  </div>
+
+  <div class="mt-8 flex justify-center">
+    <a href="lessons.html" class="bg-blue-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-blue-700 transition">
+      Watch All Videos
+    </a>
+  </div>
+
+</section>
+
+<!-- Рекомендуемые книги -->
+<section class="mt-16 px-6 md:px-20">
+  <h2 class="text-2xl md:text-3xl font-bold text-blue-700 mb-10 text-center">
+    Recommended Books
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Книга 1 -->
+    <div class="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center text-center">
+      <div class="w-48 h-64 mb-4 overflow-hidden rounded-2xl bg-gray-200">
+        <img src="assets/eiu.png" alt="English Grammar in Use" class="w-full h-full object-cover">
+      </div>
+      <h3 class="text-lg font-semibold text-blue-700">English Grammar in Use</h3>
+      <p class="text-gray-600 mt-2">Raymond Murphy</p>
+    </div>
+
+    <!-- Книга 2 -->
+    <div class="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center text-center">
+      <div class="w-48 h-64 mb-4 overflow-hidden rounded-2xl bg-gray-200">
+        <img src="assets/book2.png" alt="Word Power Made Easy" class="w-full h-full object-cover">
+      </div>
+      <h3 class="text-lg font-semibold text-blue-700">Word Power Made Easy</h3>
+      <p class="text-gray-600 mt-2">Norman Lewis</p>
+    </div>
+
+    <!-- Книга 3 -->
+    <div class="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center text-center">
+      <div class="w-48 h-64 mb-4 overflow-hidden rounded-2xl bg-gray-200">
+        <img src="assets/book3.png" alt="Fluent English" class="w-full h-full object-cover">
+      </div>
+      <h3 class="text-lg font-semibold text-blue-700">Fluent English</h3>
+      <p class="text-gray-600 mt-2">Barbara Raifsnider</p>
+    </div>
+  </div>
+</section>
+
+<!-- Отзывы учеников -->
+<section class="mt-16 px-6 md:px-20">
+  <h2 class="text-2xl md:text-3xl font-bold text-blue-700 mb-10 text-center">
+    Student Success Stories
+  </h2>
+
+  <div class="relative">
+    <!-- Слайдер -->
+    <div id="reviews-slider" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-6">
+      <!-- Отзыв 1 -->
+      <div class="flex-none w-64 bg-white rounded-3xl shadow-lg p-6 text-center snap-start">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
+          <img src="assets/da.png" alt="Student 1" class="w-full h-full object-cover">
+        </div>
+        <p class="text-gray-700 mb-2">
+          “I learned 50 new words in a week thanks to these video lessons!”
+        </p>
+        <span class="text-blue-600 font-semibold">– Daniyar Alshinov</span>
+      </div>
+
+      <!-- Отзыв 2 -->
+      <div class="flex-none w-64 bg-white rounded-3xl shadow-lg p-6 text-center snap-start">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
+          <img src="assets/kn.png" alt="Student 2" class="w-full h-full object-cover">
+        </div>
+        <p class="text-gray-700 mb-2">
+          “Thanks to SmartUp, my listening skills improved significantly!”
+        </p>
+        <span class="text-blue-600 font-semibold">– Kairat Nurtas</span>
+      </div>
+
+      <!-- Отзыв 3 -->
+      <div class="flex-none w-64 bg-white rounded-3xl shadow-lg p-6 text-center snap-start">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
+          <img src="assets/s.png" alt="Student 3" class="w-full h-full object-cover">
+        </div>
+        <p class="text-gray-700 mb-2">
+          “I feel more confident speaking English now.”
+        </p>
+        <span class="text-blue-600 font-semibold">– Sadradin</span>
+      </div>
+
+      <!-- Отзыв 4 -->
+      <div class="flex-none w-64 bg-white rounded-3xl shadow-lg p-6 text-center snap-start">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
+          <img src="assets/aj.png" alt="Student 4" class="w-full h-full object-cover">
+        </div>
+        <p class="text-gray-700 mb-2">
+          “The lessons are clear and very easy to follow.”
+        </p>
+        <span class="text-blue-600 font-semibold">– Aruzhan Jazilbekova</span>
+      </div>
+
+      <!-- Отзыв 5 -->
+      <div class="flex-none w-64 bg-white rounded-3xl shadow-lg p-6 text-center snap-start">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
+          <img src="assets/ds.png" alt="Student 5" class="w-full h-full object-cover">
+        </div>
+        <p class="text-gray-700 mb-2">
+          “I love how interactive and fun the lessons are!”
+        </p>
+        <span class="text-blue-600 font-semibold">– Dastan Satpayev</span>
+      </div>
+    </div>
+
+    <!-- Стрелки для прокрутки -->
+    <button onclick="slideReviews(-1)" class="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition">
+      &#10094;
+    </button>
+    <button onclick="slideReviews(1)" class="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition">
+      &#10095;
+    </button>
+  </div>
+</section>
+
+<script>
+  const slider = document.getElementById('reviews-slider');
+  function slideReviews(direction) {
+    const width = slider.children[0].offsetWidth + 24; // ширина карточки + gap
+    slider.scrollBy({ left: direction * width, behavior: 'smooth' });
+  }
+</script>
+
+<!-- Часто задаваемые вопросы (FAQ) -->
+<section class="mt-16 px-6 md:px-20">
+  <h2 class="text-2xl md:text-3xl font-bold text-blue-700 mb-10 text-center">
+    Frequently Asked Questions
+  </h2>
+
+  <div class="max-w-4xl mx-auto space-y-4">
+    <!-- Вопрос 1 -->
+    <div class="bg-white rounded-2xl shadow-lg p-4">
+      <button class="w-full flex justify-between items-center text-left text-gray-700 font-medium focus:outline-none faq-btn">
+        How can I improve my vocabulary quickly?
+        <span class="text-blue-600 font-bold">+</span>
+      </button>
+      <div class="faq-content mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-500">
+        Use our video lessons, flashcards, and weekly challenges consistently to expand your vocabulary.
+      </div>
+    </div>
+
+    <!-- Вопрос 2 -->
+    <div class="bg-white rounded-2xl shadow-lg p-4">
+      <button class="w-full flex justify-between items-center text-left text-gray-700 font-medium focus:outline-none faq-btn">
+        Are the lessons suitable for beginners?
+        <span class="text-blue-600 font-bold">+</span>
+      </button>
+      <div class="faq-content mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-500">
+        Yes, we have lessons for all levels: beginner, intermediate, and advanced.
+      </div>
+    </div>
+
+    <!-- Вопрос 3 -->
+    <div class="bg-white rounded-2xl shadow-lg p-4">
+      <button class="w-full flex justify-between items-center text-left text-gray-700 font-medium focus:outline-none faq-btn">
+        Can I track my progress on the site?
+        <span class="text-blue-600 font-bold">+</span>
+      </button>
+      <div class="faq-content mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-500">
+        Absolutely! Check the Progress section to see your learned words, streaks, and challenges completed.
+      </div>
+    </div>
+
+    <!-- Вопрос 4 -->
+    <div class="bg-white rounded-2xl shadow-lg p-4">
+      <button class="w-full flex justify-between items-center text-left text-gray-700 font-medium focus:outline-none faq-btn">
+        How do I use the AI feature?
+        <span class="text-blue-600 font-bold">+</span>
+      </button>
+      <div class="faq-content mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-500">
+        The AI feature helps you practice speaking and writing. Just type or speak your sentence and get instant feedback.
+      </div>
+    </div>
+
+    <!-- Вопрос 5 -->
+    <div class="bg-white rounded-2xl shadow-lg p-4">
+      <button class="w-full flex justify-between items-center text-left text-gray-700 font-medium focus:outline-none faq-btn">
+        Can I access lessons offline?
+        <span class="text-blue-600 font-bold">+</span>
+      </button>
+      <div class="faq-content mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-500">
+        Currently, lessons are available online. You can download PDFs and exercises for offline practice.
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqButtons = document.querySelectorAll(".faq-btn");
+
+  faqButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const content = btn.nextElementSibling;
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
+
+      // Закрыть все остальные ответы
+      document.querySelectorAll(".faq-content").forEach(c => {
+        c.style.maxHeight = null;
+      });
+      document.querySelectorAll(".faq-btn span").forEach(s => s.textContent = "+");
+
+      // Если текущий закрыт — открыть его
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        btn.querySelector("span").textContent = "-";
+      }
+    });
+  });
+</script>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-gray-200 mt-16">
+  <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+
+    <!-- Логотип и описание -->
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold text-lg">S</div>
+        <h1 class="text-xl font-bold text-white">SmartUp</h1>
+      </div>
+      <p class="text-gray-400 text-sm">
+        Learn English effectively with video lessons, AI exercises, and curated articles. Boost your skills every day!
+      </p>
+    </div>
+
+    <!-- Навигация -->
+    <div>
+      <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+      <ul class="space-y-2 text-gray-400">
+        <li><a href="#" class="hover:text-white transition">Home</a></li>
+        <li><a href="#" class="hover:text-white transition">Lessons</a></li>
+        <li><a href="#" class="hover:text-white transition">Vocabulary</a></li>
+        <li><a href="#" class="hover:text-white transition">Tests</a></li>
+        <li><a href="#" class="hover:text-white transition">Video Lessons</a></li>
+      </ul>
+    </div>
+
+    <!-- Контакты / Соцсети с встроенными SVG -->
+    <div>
+      <h3 class="text-white font-semibold mb-4">Follow Us</h3>
+      <div class="flex gap-4">
+        <!-- Instagram -->
+        <a href="#" class="bg-gray-700 p-2 rounded-full hover:bg-pink-500 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.5.2.9.5 1.3.9.4.4.7.8.9 1.3.2.4.3 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.5-.5.9-.9 1.3-.4.4-.8.7-1.3.9-.4.2-1 .3-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.5-.2-.9-.5-1.3-.9-.4-.4-.7-.8-.9-1.3-.2-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.5.5-.9.9-1.3.4-.4.8-.7 1.3-.9.4-.2 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0-2.2C8.7 0 8.3 0 7 .1 5.8.2 4.9.4 4.1.8 3.3 1.2 2.6 1.7 2 2.3.8 3.5.4 4.4.1 5.6 0 6.8 0 7.2 0 12s0 5.2.1 6.4c.1 1.2.4 2.1.8 2.9.5.6 1.2 1.1 1.9 1.5.8.4 1.7.7 2.9.8C8.3 24 8.7 24 12 24s3.7 0 5-.1c1.2-.1 2.1-.4 2.9-.8.6-.4 1.1-.9 1.5-1.5.4-.8.7-1.7.8-2.9.1-1.2.1-1.6.1-5s0-3.7-.1-5c-.1-1.2-.4-2.1-.8-2.9-.4-.6-.9-1.1-1.5-1.5-.8-.4-1.7-.7-2.9-.8C15.7 0 15.3 0 12 0z"/>
+            <path d="M12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+            <circle cx="18.4" cy="5.6" r="1.44"/>
+          </svg>
+        </a>
+
+        <!-- Telegram -->
+        <a href="#" class="bg-gray-700 p-2 rounded-full hover:bg-blue-400 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12zm5.527 8.735l-1.664 7.841c-.125.568-.454.712-.918.443l-2.533-1.87-1.223 1.18c-.135.135-.247.247-.506.247l.182-2.588 4.717-4.26c.205-.182-.045-.285-.317-.103l-5.832 3.664-2.508-.784c-.543-.171-.554-.543.114-.802l9.808-3.783c.455-.171.854.103.71.802z"/>
+          </svg>
+        </a>
+
+        <!-- YouTube -->
+        <a href="#" class="bg-gray-700 p-2 rounded-full hover:bg-red-600 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a2.998 2.998 0 0 0-2.112-2.115C19.353 3.5 12 3.5 12 3.5s-7.353 0-9.386.571a2.998 2.998 0 0 0-2.112 2.115C0 8.18 0 12 0 12s0 3.82.502 5.814a2.998 2.998 0 0 0 2.112 2.115C4.647 20.5 12 20.5 12 20.5s7.353 0 9.386-.571a2.998 2.998 0 0 0 2.112-2.115C24 15.82 24 12 24 12s0-3.82-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+      </div>
+      <p class="mt-6 text-gray-400 text-sm">
+        Email: <a href="mailto:info@smartup.com" class="hover:text-white transition">info@smartup.com</a>
+      </p>
+    </div>
+
+    <!-- Контакты -->
+    <div>
+      <h3 class="text-white font-semibold mb-4">Contact</h3>
+      <p class="text-gray-400 text-sm">Phone: +7 776 521 17 27</p>
+      <p class="text-gray-400 text-sm mt-2">Address: 123 Learning St, Astana</p>
+    </div>
+
+  </div>
+
+  <div class="border-t border-gray-700 mt-8 text-center py-4 text-gray-500 text-sm">
+    &copy; 2025 SmartUp. All rights reserved.
+  </div>
+</footer>
+
+
+<!-- Добавляем перед </body> -->
+
+<!-- Плавающая кнопка ИИ-чата -->
+<div id="chat-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+  <!-- Кнопка -->
+  <button id="chat-toggle" class="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition transform hover:scale-110">
+    💬
+  </button>
+
+  <!-- Мини-чат (скрыт по умолчанию) -->
+  <div id="mini-chat" class="hidden mt-2 w-80 bg-white shadow-2xl rounded-xl flex flex-col overflow-hidden opacity-0 translate-y-4 transition-all duration-300">
+    <!-- Верхняя панель -->
+    <div class="bg-blue-600 text-white px-4 py-2 flex justify-between items-center font-semibold rounded-t-xl">
+      AI Chat
+      <button id="chat-close" class="text-white font-bold text-xl hover:text-gray-200">×</button>
+    </div>
+
+    <!-- Сообщения -->
+    <div id="chat-messages" class="p-4 flex-1 overflow-y-auto max-h-64 space-y-2 scroll-smooth">
+      <!-- Сообщения будут появляться здесь -->
+    </div>
+
+    <!-- Поле ввода -->
+    <div class="p-4 border-t flex gap-2">
+      <input id="chat-input" type="text" placeholder="Type a message..." class="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
+      <button id="chat-send" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const chatToggle = document.getElementById('chat-toggle');
+  const miniChat = document.getElementById('mini-chat');
+  const chatClose = document.getElementById('chat-close');
+  const chatSend = document.getElementById('chat-send');
+  const chatInput = document.getElementById('chat-input');
+  const chatMessages = document.getElementById('chat-messages');
+
+  // Показать/скрыть чат с плавной анимацией
+  chatToggle.addEventListener('click', () => {
+    if (miniChat.classList.contains('hidden')) {
+      miniChat.classList.remove('hidden');
+      setTimeout(() => {
+        miniChat.style.opacity = '1';
+        miniChat.style.transform = 'translateY(0)';
+      }, 10);
+    } else {
+      miniChat.style.opacity = '0';
+      miniChat.style.transform = 'translateY(20px)';
+      setTimeout(() => miniChat.classList.add('hidden'), 300);
+    }
+  });
+
+  chatClose.addEventListener('click', () => {
+    miniChat.style.opacity = '0';
+    miniChat.style.transform = 'translateY(20px)';
+    setTimeout(() => miniChat.classList.add('hidden'), 300);
+  });
+
+  // Простой алгоритм ответов ИИ
+  const aiResponses = {
+  // Приветствия
+  "hello": "Hello! 😊 I'm your English study assistant. How can I help you today?",
+  "hi": "Hi there! 👋 Ready to learn some English?",
+  "how are you": "I'm great, thank you! Let's learn some English together!",
+
+  // Общие вопросы
+  "what is your name": "I'm SmartUp AI — your virtual English learning partner.",
+  "who made you": "I was created to help people improve their English easily and enjoyably.",
+
+  // Об обучении
+  "how to learn english": "Start with small daily goals! Practice vocabulary, listen to English music, and watch shows with subtitles.",
+  "how to improve my vocabulary": "Try to learn 5 new words every day and use them in sentences. You can use the Vocabulary section here 😉",
+  "how to speak fluently": "Fluency comes with practice. Speak out loud daily, even if it’s to yourself!",
+  "how to remember words": "Use them in real sentences or make short stories with them. Repetition is key!",
+  "how to learn grammar": "Focus on one grammar topic per day — like tenses, articles, or prepositions. Practice makes perfect!",
+  "how to pronounce words": "You can listen to native speakers online or use apps like YouGlish and Forvo to hear correct pronunciation.",
+
+  // Грамматика
+  "what is present simple": "Present Simple is used for habits, facts, and routines. Example: 'I study English every day.'",
+  "what is past simple": "Past Simple is used for actions that happened in the past. Example: 'I watched a movie yesterday.'",
+  "what is future tense": "Future tense shows what will happen. Example: 'I will travel tomorrow.'",
+  "difference between is and are": "'Is' is used with singular nouns, and 'are' with plural ones. Example: 'He is tall', 'They are students.'",
+  "difference between do and does": "'Do' is for I/you/we/they. 'Does' is for he/she/it. Example: 'Do you like apples?' / 'Does he play football?'",
+
+  // Лексика
+  "what does apple mean": "‘Apple’ means ‘яблоко’ 🍎 in Russian.",
+  "what does airport mean": "‘Airport’ means ‘аэропорт’ ✈️.",
+  "what does computer mean": "‘Computer’ means ‘компьютер’.",
+  "what does meeting mean": "‘Meeting’ means ‘встреча’.",
+
+  // Советы
+  "give me a random word": "Here’s one: ‘Journey’ — it means ‘путешествие’. Try to make a sentence with it!",
+  "give me a study tip": "Study for 20–30 minutes, then take a short break. Consistency beats intensity!",
+  "what is the best way to learn english": "Combine listening, speaking, reading, and writing — that’s the best mix! 💪",
+
+  // Default
+  "default": "Hmm 🤔 I’m not sure about that. Can you ask something about English learning, grammar, or vocabulary?"
+};
+
+  function getAIResponse(message) {
+    message = message.toLowerCase();
+    for (const key in aiResponses) {
+      if (message.includes(key)) return aiResponses[key];
+    }
+    return aiResponses["default"];
+  }
+
+  // Функция добавления сообщения с анимацией
+  function addMessage(text, sender='user') {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = sender === 'user' 
+      ? "bg-blue-100 text-blue-800 px-3 py-2 rounded-lg self-end max-w-xs opacity-0 transform translate-x-4 transition-all duration-300"
+      : "bg-gray-200 text-gray-800 px-3 py-2 rounded-lg self-start max-w-xs opacity-0 transform -translate-x-4 transition-all duration-300";
+    msgDiv.textContent = text;
+    chatMessages.appendChild(msgDiv);
+
+    // Плавное появление
+    setTimeout(() => {
+      msgDiv.style.opacity = '1';
+      msgDiv.style.transform = 'translateX(0)';
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 50);
+  }
+
+  // Отправка сообщения
+  chatSend.addEventListener('click', () => {
+    const userMessage = chatInput.value.trim();
+    if (!userMessage) return;
+    addMessage(userMessage, 'user');
+    addMessage(getAIResponse(userMessage), 'ai');
+    chatInput.value = '';
+  });
+
+  // Отправка по Enter
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === "Enter") {
+      chatSend.click();
+    }
+  });
+</script>
+
+<script>
+  const links = document.querySelectorAll('nav a');
+  links.forEach(link => {
+    if (link.href === window.location.href) {
+      link.classList.add('text-blue-600', 'font-bold');
+    }
+  });
+</script>
+</body>
+</html>

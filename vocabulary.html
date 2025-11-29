@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartUp | Vocabulary</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #mobile-menu {
+      transition: all 0.3s ease-in-out;
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    #mobile-menu.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .vocab-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .vocab-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- Overlay -->
+<div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-30 z-10" onclick="closeMenu()"></div>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-5 bg-white shadow-md">
+  <div class="flex items-center gap-2">
+    <div class="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold text-lg">S</div>
+    <h1 class="text-2xl font-bold text-blue-700">SmartUp</h1>
+  </div>
+
+  <nav class="hidden md:flex gap-6 text-gray-700 font-medium">
+    <a href="home.html" class="hover:text-blue-600">Home</a>
+    <a href="lessons.html" class="hover:text-blue-600">Lessons</a>
+    <a href="vocabulary.html" class="text-blue-600 font-bold">Vocabulary</a>
+    <a href="tests.html" class="hover:text-blue-600">Tests</a>
+  </nav>
+
+  <div class="md:hidden">
+    <button onclick="toggleMenu()" class="focus:outline-none">
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<nav id="mobile-menu" class="fixed top-0 right-0 h-full bg-white shadow-md z-20 flex flex-col gap-6 pt-24 p-6 md:hidden overflow-y-auto w-64 max-w-full">
+  <a href="home.html" onclick="closeMenu()">Home</a>
+  <a href="lessons.html" onclick="closeMenu()">Lessons</a>
+  <a href="vocabulary.html" class="font-bold text-blue-600" onclick="closeMenu()">Vocabulary</a>
+  <a href="tests.html" onclick="closeMenu()">Tests</a>
+</nav>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('show');
+  document.getElementById('overlay').classList.toggle('hidden');
+}
+function closeMenu() {
+  document.getElementById('mobile-menu').classList.remove('show');
+  document.getElementById('overlay').classList.add('hidden');
+}
+</script>
+
+<!-- Banner -->
+<section class="bg-blue-600 text-white pt-32 pb-16 px-6 md:px-20 rounded-b-3xl text-center">
+  <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Expand Your Vocabulary</h1>
+  <p class="text-lg md:text-xl text-blue-200 max-w-2xl mx-auto">Learn new words with translations and examples. Organized by topic for easier memorization.</p>
+</section>
+
+<!-- Filter -->
+<section class="mt-12 px-6 md:px-20 flex flex-wrap justify-center gap-4">
+  <button class="category-btn bg-white text-blue-600 font-semibold px-4 py-2 rounded-full shadow hover:bg-blue-50 transition" data-category="all">All</button>
+  <button class="category-btn bg-white text-blue-600 font-semibold px-4 py-2 rounded-full shadow hover:bg-blue-50 transition" data-category="basic">Basic</button>
+  <button class="category-btn bg-white text-blue-600 font-semibold px-4 py-2 rounded-full shadow hover:bg-blue-50 transition" data-category="business">Business</button>
+  <button class="category-btn bg-white text-blue-600 font-semibold px-4 py-2 rounded-full shadow hover:bg-blue-50 transition" data-category="travel">Travel</button>
+  <button class="category-btn bg-white text-blue-600 font-semibold px-4 py-2 rounded-full shadow hover:bg-blue-50 transition" data-category="food">Food</button>
+  <button class="category-btn bg-white text-blue-600 font-semibold px-4 py-2 rounded-full shadow hover:bg-blue-50 transition" data-category="tech">Technology</button>
+</section>
+
+<!-- Search -->
+<div class="mt-6 px-6 md:px-20 text-center">
+  <input id="search-input" type="text" placeholder="Search a word..." class="w-full md:w-1/2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
+</div>
+
+<!-- Vocabulary Cards -->
+<section class="mt-8 px-6 md:px-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="vocab-cards">
+
+  <!-- Basic -->
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="basic"><h3>Book</h3><p>Книга</p><p class="italic text-gray-500">I read a book every night.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="basic"><h3>Apple</h3><p>Яблоко</p><p class="italic text-gray-500">He eats an apple every morning.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="basic"><h3>Chair</h3><p>Стул</p><p class="italic text-gray-500">She sat on the chair.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="basic"><h3>Window</h3><p>Окно</p><p class="italic text-gray-500">The window is open.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="basic"><h3>Water</h3><p>Вода</p><p class="italic text-gray-500">Drink more water.</p></div>
+
+  <!-- Business -->
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="business"><h3>Meeting</h3><p>Встреча</p><p class="italic text-gray-500">The meeting starts at 10 AM.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="business"><h3>Colleague</h3><p>Коллега</p><p class="italic text-gray-500">My colleague is very helpful.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="business"><h3>Salary</h3><p>Зарплата</p><p class="italic text-gray-500">He receives his salary monthly.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="business"><h3>Deadline</h3><p>Срок сдачи</p><p class="italic text-gray-500">We must meet the deadline.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="business"><h3>Client</h3><p>Клиент</p><p class="italic text-gray-500">The client is always right.</p></div>
+
+  <!-- Travel -->
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="travel"><h3>Airport</h3><p>Аэропорт</p><p class="italic text-gray-500">We arrived at the airport early.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="travel"><h3>Passport</h3><p>Паспорт</p><p class="italic text-gray-500">Don't forget your passport.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="travel"><h3>Hotel</h3><p>Отель</p><p class="italic text-gray-500">The hotel was near the beach.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="travel"><h3>Luggage</h3><p>Багаж</p><p class="italic text-gray-500">My luggage is heavy.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="travel"><h3>Flight</h3><p>Рейс</p><p class="italic text-gray-500">The flight was delayed.</p></div>
+
+  <!-- Food -->
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="food"><h3>Pizza</h3><p>Пицца</p><p class="italic text-gray-500">We ordered a pizza for dinner.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="food"><h3>Bread</h3><p>Хлеб</p><p class="italic text-gray-500">Fresh bread smells amazing.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="food"><h3>Cheese</h3><p>Сыр</p><p class="italic text-gray-500">I like cheese on my sandwich.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="food"><h3>Fruit</h3><p>Фрукт</p><p class="italic text-gray-500">Eat more fruit daily.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="food"><h3>Vegetable</h3><p>Овощ</p><p class="italic text-gray-500">Vegetables are healthy.</p></div>
+
+  <!-- Tech -->
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="tech"><h3>Computer</h3><p>Компьютер</p><p class="italic text-gray-500">I use my computer to study.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="tech"><h3>Internet</h3><p>Интернет</p><p class="italic text-gray-500">The internet is fast today.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="tech"><h3>Keyboard</h3><p>Клавиатура</p><p class="italic text-gray-500">My keyboard is mechanical.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="tech"><h3>Software</h3><p>Программное обеспечение</p><p class="italic text-gray-500">We installed new software.</p></div>
+  <div class="vocab-card bg-white p-6 rounded-2xl shadow" data-category="tech"><h3>Phone</h3><p>Телефон</p><p class="italic text-gray-500">My phone battery is low.</p></div>
+
+</section>
+
+<script>
+const categoryBtns = document.querySelectorAll(".category-btn");
+const vocabCards = document.querySelectorAll(".vocab-card");
+
+categoryBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const cat = btn.dataset.category;
+    vocabCards.forEach(card => {
+      card.style.display = (cat === "all" || card.dataset.category === cat) ? "block" : "none";
+    });
+  });
+});
+
+document.getElementById("search-input").addEventListener("input", e => {
+  const q = e.target.value.toLowerCase();
+  vocabCards.forEach(card => {
+    card.style.display = card.querySelector("h3").textContent.toLowerCase().includes(q) ? "block" : "none";
+  });
+});
+</script>
+
+</body>
+</html>
